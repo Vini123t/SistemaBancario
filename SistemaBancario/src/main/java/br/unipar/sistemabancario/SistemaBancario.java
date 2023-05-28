@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class SistemaBancario {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        
         
         
             final int maximo_contas = 1000000;
@@ -44,7 +44,7 @@ public class SistemaBancario {
                         int numeroConta;
                         numeroConta = Integer.parseInt(input);
                         
-                        String nomeTitular = JOptionPane.showInputDialog("Nome do titular: \n");
+                       String nomeTitular = JOptionPane.showInputDialog("Nome do titular: \n");
                         
                        input = JOptionPane.showInputDialog("Saldo inicial:   \n");
                         double saldoInicial;
@@ -61,10 +61,10 @@ public class SistemaBancario {
                     break;
                     
                 case 2:
-                    System.out.print("Número da conta: ");
-                    int numeroContaDeposito = scanner.nextInt();
-                    System.out.print("Valor a depositar: ");
-                    double valorDeposito = scanner.nextDouble();
+                   input = JOptionPane.showInputDialog("Número da conta: ");
+                    int numeroContaDeposito  = Integer.parseInt(input);
+                    input = JOptionPane.showInputDialog("Valor a depositar: ");
+                    double valorDeposito = Double.parseDouble(input);
                     
                     boolean depositoEncontrado = false;
                     
@@ -78,17 +78,17 @@ public class SistemaBancario {
                     }
                     
                     if (depositoEncontrado) {
-                        System.out.println("Depósito realizado com sucesso!");
+                        JOptionPane.showMessageDialog(null,"Depósito realizado com sucesso!");
                     } else {
-                        System.out.println("Conta não encontrada!");
+                         JOptionPane.showMessageDialog(null,"Conta não encontrada!");
                     }
                     break;
                     
                 case 3:
-                    System.out.print("Número da conta: ");
-                    int numeroContaSaque = scanner.nextInt();
-                    System.out.print("Valor a sacar: ");
-                    double valorSaque = scanner.nextDouble();
+                    input = JOptionPane.showInputDialog("Número da conta: ");
+                    int numeroContaSaque = Integer.parseInt(input);
+                    input = JOptionPane.showInputDialog("Valor a sacar: ");
+                    double valorSaque = Double.parseDouble(input);
                     
                     boolean saqueEncontrado = false;
                     
@@ -97,53 +97,53 @@ public class SistemaBancario {
                         if (contas[i].getNumeroConta() == numeroContaSaque) {
                             if (contas[i].sacar(valorSaque)) {
                                 saqueEncontrado = true;
-                                System.out.println("Saque realizado com sucesso!");
+                                JOptionPane.showMessageDialog(null,"Saque realizado com sucesso!");
                             } else {
-                                System.out.println("Saldo insuficiente para saque!");
+                                JOptionPane.showMessageDialog(null,"Saldo insuficiente para saque!");
                             }
                             break;
                         }
                     }
                     
                     if (!saqueEncontrado) {
-                        System.out.println("Conta não encontrada!");
+                        JOptionPane.showMessageDialog(null,"Conta não encontrada!");
                     }
                     break;
                     
                 case 4:
-                    System.out.print("Número da conta: ");
-                    int numeroContaConsulta = scanner.nextInt();
+                   input = JOptionPane.showInputDialog("Número da conta: ");
+                    int numeroContaConsulta = Integer.parseInt(input);
                     
                     boolean contaEncontrada = false;
                     
                   
                     for (int i = 0; i < numContas; i++) {
                         if (contas[i].getNumeroConta() == numeroContaConsulta) {
-                            System.out.println("Saldo: " + contas[i].getSaldo());
+                            JOptionPane.showMessageDialog(null,"Saldo: " + contas[i].getSaldo());
                             contaEncontrada = true;
                             break;
                         }
                     }
                     
                     if (!contaEncontrada) {
-                        System.out.println("Conta não encontrada!");
+                        JOptionPane.showMessageDialog(null,"Conta não encontrada!");
                     }
                     break;
                     
                 case 5:
                     sair = true;
-                    System.out.println("Saindo do sistema...");
+                    JOptionPane.showMessageDialog(null,"Saindo do sistema...");
                     break;
                     
                 default:
-                    System.out.println("Opção inválida!");
+                   JOptionPane.showMessageDialog(null,"Opção inválida!");
                     break;
             }
             
-            System.out.println();
-        }
+           JOptionPane.showMessageDialog(null,"");
         
-        scanner.close();
+        
     }
+}
 }
 
