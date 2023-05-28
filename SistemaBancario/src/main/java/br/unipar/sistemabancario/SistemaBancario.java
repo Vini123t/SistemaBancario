@@ -6,51 +6,57 @@ package br.unipar.sistemabancario;
  */
 import java.util.Scanner;
 import br.unipar.sistemabancario.model.ContaBancaria;
+import javax.swing.JOptionPane;
 
 public class SistemaBancario {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
         
-            final int MAX_CONTAS = 1000000;
+            final int maximo_contas = 1000000;
         
         
-        ContaBancaria[] contas = new ContaBancaria[MAX_CONTAS];
+        ContaBancaria[] contas = new ContaBancaria[maximo_contas];
         
         int numContas = 0; 
+        
+        String input;
         
         boolean sair = false;
         
         while (!sair) {
-            System.out.println("===== Sistema Bancário =====");
-            System.out.println("1. Criar conta");
-            System.out.println("2. Depositar");
-            System.out.println("3. Sacar");
-            System.out.println("4. Consultar saldo");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
-            int opcao = scanner.nextInt();
+            input = JOptionPane.showInputDialog("===== Sistema Bancário ===== \n"
+                    + "1. Criar conta\n"
+                    + "2. Depositar\n"
+                    + "3. Sacar\n"
+                    + "4. Consultar saldo\n"
+                    + "5. Sair\n"
+                    + "Escolha uma opção: ");
+          
+            int opcao;
+            
+            opcao = Integer.parseInt(input);
             
             switch (opcao) {
                 case 1:
-                    if (numContas < MAX_CONTAS) {
-                        System.out.print("Número da conta: ");
-                        int numeroConta = scanner.nextInt();
-                        scanner.nextLine(); // limpar o buffer
+                    if (numContas < maximo_contas) {
+                        input = JOptionPane.showInputDialog("Número da conta: \n");
+                        int numeroConta;
+                        numeroConta = Integer.parseInt(input);
                         
-                        System.out.print("Nome do titular: ");
-                        String nomeTitular = scanner.nextLine();
+                        String nomeTitular = JOptionPane.showInputDialog("Nome do titular: \n");
                         
-                        System.out.print("Saldo inicial: ");
-                        double saldoInicial = scanner.nextDouble();
+                       input = JOptionPane.showInputDialog("Saldo inicial:   \n");
+                        double saldoInicial;
+                        saldoInicial = Double.parseDouble(input);
                         
                         
                         contas[numContas] = new ContaBancaria(numeroConta, nomeTitular, saldoInicial);
                         numContas++;
                         
-                        System.out.println("Conta criada com sucesso!");
+                        JOptionPane.showMessageDialog(null,"Conta criada com sucesso!");
                     } else {
-                        System.out.println("Limite máximo de contas atingido!");
+                        JOptionPane.showMessageDialog(null,"Limite máximo de contas atingido!");
                     }
                     break;
                     
